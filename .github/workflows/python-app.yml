@@ -22,11 +22,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements-dev.txt
-    - name: Start API
-      run: |
-        python -m gunicorn -D -b 0.0.0.0:9000 main:app
     - name: Run tests
       run: |
+        python -m gunicorn -D -b 0.0.0.0:9000 main:app
+        ss -nlp | grep 9000
         pytest -v --junitxml=junit/test-results-${{ matrix.python-version }}.xml
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
