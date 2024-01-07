@@ -3,5 +3,6 @@
 httpx
 pytest
 requests
+gunicorn
 
 -r requirements.txt
