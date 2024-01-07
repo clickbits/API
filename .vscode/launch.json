@@ -11,6 +11,7 @@
                 "--port",
                 "9000"
             ],
+            "envFile": "${workspaceFolder}/conf/.env.dev",
             "jinja": true,
             "justMyCode": true
         }

@@ -1,10 +1,9 @@
 import pytest
-from fastapi.testclient import TestClient
-from main import app
+import requests
 
-client = TestClient(app)
+URL = "http://localhost:9000/"
 
 def test_root():
-    response = client.get("/")
+    response = requests.get(URL)
     assert response.status_code == 200
     assert response.json() == {"message": "Hello World"}
