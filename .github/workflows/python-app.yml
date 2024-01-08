@@ -39,7 +39,9 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Set environment variables
       run: |
-        export $(xargs < ./conf/.env.dev)
+        while IFS= read -r line; do
+          echo "$line" >> $GITHUB_ENV
+        done < ./conf/.env.dev
     - name: Migrate database to latest version
       run: |
         alembic upgrade head
