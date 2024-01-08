@@ -44,6 +44,7 @@ def run_migrations_offline() -> None:
 
     """
     connection_string:str = f"postgresql+asyncpg://{ os.environ['POSTGRES_USER'] }:{ os.environ['POSTGRES_PASSWORD'] }@{ os.environ['POSTGRES_HOST'] }:{ os.environ['POSTGRES_PORT'] }/{ os.environ['POSTGRES_DB'] }"
+    config.set_main_option("sqlalchemy.url", connection_string)
     context.configure(
         url=connection_string,
         target_metadata=target_metadata,
@@ -67,6 +68,9 @@ async def run_async_migrations() -> None:
     and associate a connection with the context.
 
     """
+
+    connection_string:str = f"postgresql+asyncpg://{ os.environ['POSTGRES_USER'] }:{ os.environ['POSTGRES_PASSWORD'] }@{ os.environ['POSTGRES_HOST'] }:{ os.environ['POSTGRES_PORT'] }/{ os.environ['POSTGRES_DB'] }"
+    config.set_main_option("sqlalchemy.url", connection_string)
 
     connectable = async_engine_from_config(
         config.get_section(config.config_ini_section, {}),

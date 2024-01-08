@@ -40,7 +40,13 @@ jobs:
     - name: Set environment variables
       run: |
         export $(xargs < ./conf/.env.dev)
-    - name: Create database
+    - name: Migrate database to latest version
+      run: |
+        alembic upgrade head
+    - name: Migrate database downgrade to base version
+      run: |
+        alembic downgrade base
+    - name: Migrate database finally to latest version
       run: |
         alembic upgrade head
     - name: Run tests
