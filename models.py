@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel
+from sqlmodel import SQLModel, Field
 from typing import Optional
 
 class User(SQLModel):
@@ -7,4 +7,4 @@ class User(SQLModel):
 
 class UpVote(SQLModel):
     id: int
-    uuid: str
+    sid: str = Field(nullable=False)
