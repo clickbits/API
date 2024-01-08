@@ -2,6 +2,13 @@ name: API Tests
 
 on: [push]
 
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: clickbits
+  POSTGRES_HOST: localhost
+  POSTGRES_PORT: 5432
+
 jobs:
   build:
 
@@ -10,10 +17,6 @@ jobs:
     services:
       postgres:
         image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: clickbits
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
