@@ -1,9 +1,7 @@
 import os
 
-from sqlmodel import SQLModel, create_engine
-from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlalchemy.ext.asyncio.engine import AsyncEngine
-
+from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 DSN: str = f"postgresql+asyncpg://{ os.environ['POSTGRES_USER'] }:{ os.environ['POSTGRES_PASSWORD'] }@{ os.environ['POSTGRES_HOST'] }:{ os.environ['POSTGRES_PORT'] }/{ os.environ['POSTGRES_DB'] }"
